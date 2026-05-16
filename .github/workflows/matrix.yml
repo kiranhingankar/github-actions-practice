@@ -1,0 +1,61 @@
+# Workflow name shown in GitHub Actions tab
+name: Matrix Build
+
+# Trigger workflow on every push
+on:
+  push:
+
+jobs:
+  # Job ID
+  matrix-job:
+
+    # Dynamically choose OS from matrix
+    runs-on: ${{ matrix.os }}
+
+    # Matrix strategy configuration
+    strategy:
+
+      # Continue running remaining jobs even if one fails
+      fail-fast: false
+
+      # Matrix combinations
+      matrix:
+
+        # Operating systems to test on
+        os:
+          - ubuntu-latest
+          - windows-latest
+
+        # Python versions to test on
+        python-version:
+          - "3.10"
+          - "3.11"
+          - "3.12"
+
+        # Exclude specific matrix combination
+        exclude:
+
+          # Skip Python 3.10 on Windows
+          - os: windows-latest
+            python-version: "3.10"
+
+    steps:
+
+      # Checkout repository code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Install Python version from matrix
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+
+          # Use matrix Python version
+          python-version: ${{ matrix.python-version }}
+
+      # Print installed Python version
+      - name: Print Python Version
+        run: python --version
+
+    # - name: Intentional Failure
+    #    run: exit 1
