@@ -26,7 +26,7 @@ jobs:
           Write-Host "Current User: $env.USERNAME"
   
   macos-job:
-    runs-on: macous-latest
+    runs-on: macos-latest
 
     steps:
       - name: Print runner details
@@ -34,4 +34,3 @@ jobs:
           echo "OS: macOS"
           echo "Hostname: $(hostname)"
           echo "Current User: $(whoami)"
-          
