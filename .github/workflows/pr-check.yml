@@ -1,0 +1,33 @@
+# Workflow name shown in GitHub Actions tab
+name: PR Check Workflow
+
+# Define when this workflow should run
+on:
+  pull_request:
+
+    # Run only when PR target branch is main
+    branches:
+      - main
+
+    # Trigger workflow when:
+    # opened      -> new PR created
+    # synchronize -> new commits pushed to existing PR
+    types:
+      - opened
+      - synchronize
+
+# Jobs section
+jobs:
+
+  # Job ID
+  pr-check:
+
+    # Runner environment
+    runs-on: ubuntu-latest
+
+    # Steps executed inside the job
+    steps:
+
+      # Print source branch name of the PR
+      - name: Print PR branch
+        run: 'echo "PR check running for branch: ${{ github.head_ref }}"'
