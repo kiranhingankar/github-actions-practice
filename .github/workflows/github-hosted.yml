@@ -47,12 +47,12 @@ jobs:
           echo "Python Version:"
           python3 --version
 
-          echo "Node Version:""
+          echo "Node Version:"
           node --version
 
           echo "Git Version:"
           git --version
 
-          
+
 
 
