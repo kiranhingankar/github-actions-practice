@@ -1,0 +1,25 @@
+name: Self Hosted Runner
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  self-hosted-job:
+    runs-on: self-hosted
+
+    steps:
+      - name: Print Machine details
+        run: |
+          echo "Hostname:"
+          hostname
+
+          echo "Current Directory:"
+          pwd
+
+          echo "Currernt User:"
+          whoami
+
+      - name: Create File
+        run: |
+          echo "Hello from self Hosted Runner" > runner-test.txt
+          ls -la
