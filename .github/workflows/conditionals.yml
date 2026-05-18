@@ -1,4 +1,4 @@
-name: Conditionals Demo
+name: Conditionals Workflow
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Run only on main branch
-        if: github.ref == "refs/heads/main"
+        if: github.ref == 'refs/heads/main'
         run: echo "This is the main branch"
 
       - name: Intentional Failure
