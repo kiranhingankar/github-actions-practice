@@ -1,0 +1,30 @@
+name: CI Cache workflow
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 1: Cache dependencies
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}--node-${{ hashFiles('**/package-lock.json') }}
+          restore-key: |
+            ${{ runner.os }}--node-
+
+      # Step 2: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 3: Run your build or tests
+      - name: Run build
+        run: npm run build
