@@ -1,0 +1,22 @@
+name: Generate and Download Artifacts
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  generate-and-upload-artifact:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Generate test report
+        run: echo "Generate the test report from generate-and-upload-artifact job" > report.txt
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: report.txt
