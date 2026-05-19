@@ -20,3 +20,19 @@ jobs:
         with:
           name: test-report
           path: report.txt
+
+  download-artifact:
+    runs-on: ubuntu-latest
+    needs: generate-and-upload-artifact
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: test-report
+
+      - name: Print artifact contents
+        run: cat report.txt
