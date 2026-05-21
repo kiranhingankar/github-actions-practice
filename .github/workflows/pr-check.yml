@@ -15,7 +15,7 @@ jobs:
 
       - name: Check File Sizes
         run: |
-          echo "Checking file sizes..."
+          echo "Checking file sizes....."
 
           large_files=$(find . -type f -size +1M)
 
