@@ -27,10 +27,10 @@ runs:
       run: |
         if [ "${{ inputs.language }}" = "en" ]; then
           echo "Hello, ${{ inputs.name }}!"
-        elsif [ "${{ inputs.language }}"  = "es" ]; then
+        elif [ "${{ inputs.language }}"  = "es" ]; then
           echo "Hola, ${{ inputs.name }}!"
         else
-          echo "Hi, {{ inputs.name }}!"
+          echo "Hi, ${{ inputs.name }}!"
         fi
 
         echo "greeted=true" >> $GITHUB_OUTPUT
