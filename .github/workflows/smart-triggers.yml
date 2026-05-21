@@ -1,0 +1,19 @@
+name: Smart Path Triggers
+
+on:
+  push:
+    branches:
+      - main
+      - 'release/*'
+
+    paths:
+      - 'src/**'
+      - 'app/**'
+
+jobs:
+  filtered-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Message
+        run: echo "Code changes detected in src/ or app/"
