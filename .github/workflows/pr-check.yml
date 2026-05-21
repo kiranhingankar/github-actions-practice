@@ -1,33 +1,57 @@
-# Workflow name shown in GitHub Actions tab
-name: PR Check Workflow
+name: PR Validation Checks
 
-# Define when this workflow should run
 on:
   pull_request:
-
-    # Run only when PR target branch is main
     branches:
       - main
 
-    # Trigger workflow when:
-    # opened      -> new PR created
-    # synchronize -> new commits pushed to existing PR
-    types:
-      - opened
-      - synchronize
-
-# Jobs section
 jobs:
-
-  # Job ID
-  pr-check:
-
-    # Runner environment
+  file-size-check:
     runs-on: ubuntu-latest
 
-    # Steps executed inside the job
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      # Print source branch name of the PR
-      - name: Print PR branch
-        run: 'echo "PR check running for branch: ${{ github.head_ref }}"'
+      - name: Check File Sizes
+        run: |
+          echo "Checking file sizes....."
+
+          large_files=$(find . -type f -size +1M)
+
+          if [ -n "$large_files" ]; then
+            echo "Large files found:"
+            echo "$large_files"
+            exit 1
+          fi
+
+          echo "All files are below 1MB"
+
+  branch-name-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate Branch Name
+        run: |
+          echo "Branch Name -> ${{ github.head_ref }}"
+
+          if [[ "${{ github.head_ref }}" =~ ^(feature|fix|docs)/.+$ ]]; then
+            echo "Valid branch name"
+          else
+            echo "Invalid branch name"
+            exit 1
+          fi
+
+  pr-body-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check PR Description
+        run: |
+          BODY="${{ github.event.pull_request.body }}"
+
+          if [ -z "$BODY" ]; then
+            echo "WARNING: PR description is empty"
+          else
+            echo "PR description exists"
+          fi
