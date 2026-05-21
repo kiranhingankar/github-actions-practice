@@ -1,8 +1,10 @@
 name: Generate and Download Artifacts
 
 on:
-  push:
-    branches: [main]
+  # push:
+  #   branches: [main]
+  workflow_dispatch:
+    
 
 jobs:
   generate-and-upload-artifact:

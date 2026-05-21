@@ -1,7 +1,9 @@
 name: Job Outputs Demo
 
 on:
-  push:
+  # push:
+  workflow_dispatch:
+    
 
 jobs:
   generate_date:
