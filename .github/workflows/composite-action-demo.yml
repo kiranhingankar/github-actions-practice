@@ -13,7 +13,7 @@ jobs:
 
       - name: Run Composite Action
         id: custom-action
-        uses: ./.github/actions/setup-and-greet/action.yml
+        uses: ./.github/actions/setup-and-greet
 
         with:
           name: "Kiran"
