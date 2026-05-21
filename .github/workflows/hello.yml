@@ -3,8 +3,10 @@ name: First github actions workflow
 
 # Defines when the workflow should run
 on:
-  # Trigger workflow on every push event
-  push:
+  workflow_dispatch:
+    
+  # # Trigger workflow on every push event
+  # push:
 
 # Collection of jobs in this workflow
 jobs:

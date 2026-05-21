@@ -1,0 +1,11 @@
+{
+  "name": "cache-demo",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "echo Building project...",
+    "test": "echo Running tests..."
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

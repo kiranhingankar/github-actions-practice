@@ -3,7 +3,9 @@ name: Matrix Build
 
 # Trigger workflow on every push
 on:
-  push:
+  workflow_dispatch:
+    
+  # push:
 
 jobs:
   # Job ID

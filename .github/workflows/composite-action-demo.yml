@@ -1,0 +1,24 @@
+name: Composite Action Demo
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Composite Action
+        id: custom-action
+        uses: ./.github/actions/setup-and-greet
+
+        with:
+          name: "Kiran"
+          language: "en"
+
+      - name: Print Output
+        run: |
+          echo "Greeting Completed: ${{ steps.custom-action.outputs.greeted }}"
