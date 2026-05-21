@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        run: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Run Composite Action
         id: custom-action
@@ -22,4 +22,3 @@ jobs:
       - name: Print Output
         run: |
           echo "Greeting Completed: ${{ steps.custom-action.outputs.greeted }}"
-          
